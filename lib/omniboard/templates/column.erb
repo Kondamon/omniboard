@@ -2,7 +2,7 @@
 	<div class="column-header">
 		<h2><%=column%></h2>
 		<% if column.filter_button %>
-			<svg class="filter-button"><use xlink:href="#filter-apply" /></svg>
+			<svg class="filter-button"><text x="45" y="17"></text><use xlink:href="#filter-apply" /><text></text></svg>
 		<% end %>
 	</div>
 	<%if column.can_be_grouped? %>
