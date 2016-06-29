@@ -168,6 +168,31 @@
 			return true;
 	}, true);
 
+	//Automatically filter dimmed projects on load 
+	document.addEventListener("DOMContentLoaded", hideOnStart, false);
+	function hideOnStart() {
+		foreach(".filter-button", function(elem){
+				var parent = elem.parentNode.parentNode;
+				var dimmedProjects = parent.querySelectorAll(".dimmed");
+				var use = elem.querySelector("use");
+				var countHidden = elem.querySelector("text");
+				var numHidden = 0;
+
+				//alert(dimmedProjects);
+				foreach(dimmedProjects, function(e){ 
+					addClass(e, "filtered"); 
+					++numHidden;
+				});
+				use.setAttribute("xlink:href", "#filter-remove");
+				
+				if (numHidden > 0) {
+					countHidden.innerHTML = "(" + numHidden + ")";
+				}
+
+				updateGroupVisibility();
+			});
+	}
+
 	// Filter button listeners
 	foreach(".filter-button", function(elem){
 		elem.addEventListener("click", function(){
